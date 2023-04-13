@@ -12,9 +12,13 @@ namespace maml
 	class CSourceFile : public INonCopyable
 	{
 	public:
-		CSourceFile(FILE* file);
-		CSourceFile(const String& source_file_path);
+		CSourceFile();
 		~CSourceFile();
+
+
+		bool read_from_file_handle(FILE* file);
+
+		bool read_from_file_at_path(const String& source_file_path);
 
 		bool has_data();
 

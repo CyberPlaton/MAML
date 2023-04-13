@@ -3,6 +3,7 @@
 
 
 #include "Common.h"
+#include "Error.h"
 
 
 namespace maml
@@ -20,6 +21,8 @@ namespace maml
 
 	public:
 		static FILE* open(const String& file_path, uint32_t* file_size, AccessMode mode = AccessMode_ReadWrite);
+
+		static uint32_t get_file_size(FILE* file);
 	};
 }
 

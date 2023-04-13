@@ -8,9 +8,9 @@
 
 void algorithm()
 {
-	maml::CSourceFile source("Source.txt");
+	maml::CSourceFile source;
 
-	if (source.has_data())
+	if (source.read_from_file_at_path("Source.txt"))
 	{
 		for (int i = 0; i < source.m_bytes; i++)
 		{

@@ -33,6 +33,12 @@ namespace maml
 
 
 
+#define STATIC_GET(CLASS, STATIC_MEMBER) \
+static CLASS& Get() \
+{ static CLASS STATIC_MEMBER; return STATIC_MEMBER;} \
+
+
+
 
 
 #endif
