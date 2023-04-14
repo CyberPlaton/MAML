@@ -24,6 +24,7 @@
 			"Common/STL",
 			"Common",
 			"Document",
+			"Lexing/Token",
 			"Lexing",
 			"Node",
 			"Parsing",

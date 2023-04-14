@@ -36,6 +36,13 @@ namespace maml
 		CSourceFileIterator end();
 
 
+		bool is_at_end(uint32_t index);
+
+		char at(uint32_t index);
+
+		char operator[](uint32_t index);
+
+
 	public:
 		char* m_buffer;
 		uint32_t m_bufferSize;
@@ -64,6 +71,7 @@ namespace maml
 		CSourceFileIterator& operator++() { m_pointer++; return *this; }
 
 		CSourceFileIterator operator++(int) { CSourceFileIterator iter = *this; ++(*this); return iter; }
+
 
 		friend bool operator==(const CSourceFileIterator& lh, const CSourceFileIterator& rh) { return lh.m_pointer == rh.m_pointer; }
 		friend bool operator!=(const CSourceFileIterator& lh, const CSourceFileIterator& rh) { return lh.m_pointer != rh.m_pointer; };

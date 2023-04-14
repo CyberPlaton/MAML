@@ -45,7 +45,7 @@ namespace maml
 
 			m = "Failed loading file at: \"" + file_path + "\"!";
 
-			CError::push_error_message(CError::Type(result), m);
+			CError::push_error_message(ErrorType(result), m);
 		}
 
 		return nullptr;

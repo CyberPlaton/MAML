@@ -5,6 +5,7 @@
 #include <string>
 #include <filesystem>
 #include <assert.h>
+#include <vector>
 
 
 #define MAML_NOVTABLE __declspec(novtable)
@@ -27,8 +28,11 @@ assert((message, expression))
 
 namespace maml
 {
+
 	using String = std::string;
 
+	template < typename T >
+	using Vector = std::vector< T >;
 
 
 	class INonCopyable

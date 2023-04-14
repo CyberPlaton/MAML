@@ -87,16 +87,38 @@ namespace maml
 	}
 
 
+	char CSourceFile::at(uint32_t index)
+	{
+		if(!is_at_end(index))
+		{
+			return m_buffer[index];
+		}
+
+		return '\0';
+	}
+
+
+	char CSourceFile::operator[](uint32_t index)
+	{
+		return at(index);
+	}
+
+
 	maml::CSourceFileIterator CSourceFile::end()
 	{
 		return CSourceFileIterator(&m_buffer[m_bytes / sizeof(char)]);
 	}
 
 
+	bool CSourceFile::is_at_end(uint32_t index)
+	{
+		return index >= m_bytes / sizeof(char);
+	}
+
+
 	CSourceFileIterator::CSourceFileIterator(pointer_type pointer) :
 		m_pointer(pointer)
 	{
-
 	}
 
 

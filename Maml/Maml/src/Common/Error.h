@@ -7,28 +7,28 @@
 
 namespace maml
 {
+
+	enum ErrorType
+	{
+		ErrorType_None = 0,
+
+		ErrorType_FileAccess_InvalidArgument = EINVAL,
+		ErrorType_FileAccess_PermissionDenied = EACCES,
+		ErrorType_FileAccess_FileNotFound = ENOENT,
+		ErrorType_FileAccess_DomainError = EDOM,
+		ErrorType_FileAccess_IllegalByteSequence = EILSEQ,
+
+		ErrorType_LexingError = 50,
+
+	};
+
+
 	class CError
 	{
 	public:
-		enum Type
-		{
-			Type_None = 0,
+		static void push_error_message(ErrorType type, const String& message);
 
-			Type_FileAccess_InvalidArgument = EINVAL,
-			Type_FileAccess_PermissionDenied = EACCES,
-			Type_FileAccess_FileNotFound = ENOENT,
-			Type_FileAccess_DomainError = EDOM,
-			Type_FileAccess_IllegalByteSequence = EILSEQ,
-
-
-
-		};
-
-
-	public:
-		static void push_error_message(Type type, const String& message);
-
-		static Type get_last_error_type();
+		static ErrorType get_last_error_type();
 
 		static String get_last_error_message();
 
@@ -36,7 +36,7 @@ namespace maml
 
 
 	private:
-		static Type s_errorType;
+		static ErrorType s_errorType;
 
 		static String s_errorMessage;
 
