@@ -75,9 +75,28 @@ namespace maml
 	}
 
 
-	bool CSourceFile::has_data()
+	bool CSourceFile::has_data() const
 	{
 		return m_bytes > 0;
+	}
+
+
+	maml::CSourceFileIterator CSourceFile::begin()
+	{
+		return CSourceFileIterator(&m_buffer[0]);
+	}
+
+
+	maml::CSourceFileIterator CSourceFile::end()
+	{
+		return CSourceFileIterator(&m_buffer[m_bytes / sizeof(char)]);
+	}
+
+
+	CSourceFileIterator::CSourceFileIterator(pointer_type pointer) :
+		m_pointer(pointer)
+	{
+
 	}
 
 

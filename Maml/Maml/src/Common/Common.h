@@ -2,11 +2,27 @@
 #define _MAML_COMMON_H_
 
 
-#define MAML_NOVTABLE __declspec(novtable)
-
-
 #include <string>
 #include <filesystem>
+#include <assert.h>
+
+
+#define MAML_NOVTABLE __declspec(novtable)
+
+#if MAML_DEBUG
+#define MAML_ASSERT(expression, message) \
+assert((message, expression))
+
+#define MAML_VERIFY(expression, message) \
+assert((message, expression))
+
+#elif MAML_RELEASE or MAML_DISTR
+#define MAML_ASSERT(expression, message)
+
+#define MAML_VERIFY(expression, message) \
+assert((message, expression))
+#endif
+
 
 
 namespace maml

@@ -12,11 +12,9 @@ void algorithm()
 
 	if (source.read_from_file_at_path("Source.txt"))
 	{
-		for (int i = 0; i < source.m_bytes; i++)
+		for (const auto& iter : source)
 		{
-			char c = source.m_buffer[i];
-
-			std::cout << c;
+			std::cout << iter;
 		}
 	}
 }
