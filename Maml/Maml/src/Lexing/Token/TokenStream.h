@@ -21,6 +21,8 @@ namespace maml
 
 		bool has_data() const;
 
+		uint32_t size() const;
+
 
 		CTokenStreamIterator begin();
 
@@ -32,6 +34,10 @@ namespace maml
 		SToken at(uint32_t index);
 
 		SToken operator[](uint32_t index);
+
+		void erase_tokens_in_range(uint32_t index, uint32_t count);
+
+		void replace(uint32_t index, const SToken& token);
 
 
 	private:

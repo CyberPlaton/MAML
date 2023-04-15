@@ -81,6 +81,12 @@ namespace maml
 	}
 
 
+	uint32_t CSourceFile::size() const
+	{
+		return m_bytes / sizeof(char);
+	}
+
+
 	maml::CSourceFileIterator CSourceFile::begin()
 	{
 		return CSourceFileIterator(&m_buffer[0]);

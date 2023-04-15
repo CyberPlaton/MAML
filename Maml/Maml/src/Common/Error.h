@@ -19,6 +19,7 @@ namespace maml
 		ErrorType_FileAccess_IllegalByteSequence = EILSEQ,
 
 		ErrorType_LexingError = 50,
+		ErrorType_PostProcess_LexingError,
 
 	};
 

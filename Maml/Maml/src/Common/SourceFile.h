@@ -28,6 +28,7 @@ namespace maml
 
 		bool has_data() const;
 
+		uint32_t size() const;
 
 
 		CSourceFileIterator begin();

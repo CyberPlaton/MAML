@@ -25,6 +25,7 @@
 			"Common",
 			"Document",
 			"Lexing/Token",
+			"Lexing/LexerPasses",
 			"Lexing",
 			"Node",
 			"Parsing",

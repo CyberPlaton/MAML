@@ -3,6 +3,9 @@
 
 
 #include "Common/SourceFile.h"
+#include "Lexing/LexerBasePass.h"
+#include "Lexing/LexerPassInterface.h"
+#include "Lexing/LexerPasses/VectorizingLexerPass.h"
 
 
 #endif

@@ -18,6 +18,12 @@ namespace maml
 	}
 
 
+	uint32_t CTokenStream::size() const
+	{
+		return m_stream.size();
+	}
+
+
 	maml::CTokenStreamIterator CTokenStream::begin()
 	{
 		return CTokenStreamIterator(&m_stream[0]);
@@ -50,6 +56,25 @@ namespace maml
 	maml::SToken CTokenStream::operator[](uint32_t index)
 	{
 		return at(index);
+	}
+
+
+	void CTokenStream::erase_tokens_in_range(uint32_t index, uint32_t count)
+	{
+		if(!is_at_end(index + count))
+		{
+			m_stream.erase(m_stream.begin() + index,
+						   m_stream.begin() + index + count);
+		}
+	}
+
+
+	void CTokenStream::replace(uint32_t index, const SToken& token)
+	{
+		if (!is_at_end(index))
+		{
+			m_stream[index] = token;
+		}
 	}
 
 
