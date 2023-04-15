@@ -42,9 +42,9 @@ namespace maml
 		{
 			bool accumulator = true;
 
-			for(auto i = 0; i < dimension; i++)
+			for(uint32_t i = 0; i < dimension; i++)
 			{
-				accumulator &= _is_number(_get_token_at_index(m_cursor + i).m_type);
+				accumulator &= _is_number(_get_token_type_at_index(m_cursor + i));
 
 				if (!accumulator) break;
 			}
@@ -75,11 +75,11 @@ namespace maml
 		{
 			type = TokenType_Vector2;
 
-			text = _get_token_at_index(m_cursor).m_text;
+			text = _get_token_text_at_index(m_cursor);
 
 			text += " ";
 
-			text += _get_token_at_index(m_cursor + 1).m_text;
+			text += _get_token_text_at_index(m_cursor + 1);
 
 			break;
 		}
@@ -87,15 +87,15 @@ namespace maml
 		{
 			type = TokenType_Vector3;
 
-			text = _get_token_at_index(m_cursor).m_text;
+			text = _get_token_text_at_index(m_cursor);
 
 			text += " ";
 
-			text += _get_token_at_index(m_cursor + 1).m_text;
+			text += _get_token_text_at_index(m_cursor + 1);
 
 			text += " ";
 
-			text += _get_token_at_index(m_cursor + 2).m_text;
+			text += _get_token_text_at_index(m_cursor + 2);
 
 			break;
 		}
@@ -103,19 +103,19 @@ namespace maml
 		{
 			type = TokenType_Vector4;
 
-			text = _get_token_at_index(m_cursor).m_text;
+			text = _get_token_text_at_index(m_cursor);
 
 			text += " ";
 
-			text += _get_token_at_index(m_cursor + 1).m_text;
+			text += _get_token_text_at_index(m_cursor + 1);
 
 			text += " ";
 
-			text += _get_token_at_index(m_cursor + 2).m_text;
+			text += _get_token_text_at_index(m_cursor + 2);
 
 			text += " ";
 
-			text += _get_token_at_index(m_cursor + 3).m_text;
+			text += _get_token_text_at_index(m_cursor + 3);
 
 			break;
 		}
@@ -130,7 +130,7 @@ namespace maml
 		}
 
 
-		SToken token(type, text, _get_token_at_index(m_cursor).m_line);
+		SToken token(type, text, _get_token_line_at_index(m_cursor));
 
 		m_stream->replace(m_cursor, token);
 

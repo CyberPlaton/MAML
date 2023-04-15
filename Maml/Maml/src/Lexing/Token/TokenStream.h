@@ -29,15 +29,20 @@ namespace maml
 		CTokenStreamIterator end();
 
 
+		void erase_tokens_in_range(uint32_t index, uint32_t count);
+
+		void replace(uint32_t index, const SToken& token);
+
+		void add(const SToken& token);
+
+		void add(TokenType type, const String& text, uint32_t line);
+
+
 		bool is_at_end(uint32_t index);
 
 		SToken at(uint32_t index);
 
 		SToken operator[](uint32_t index);
-
-		void erase_tokens_in_range(uint32_t index, uint32_t count);
-
-		void replace(uint32_t index, const SToken& token);
 
 
 	private:

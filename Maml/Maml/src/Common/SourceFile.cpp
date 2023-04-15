@@ -30,7 +30,7 @@ namespace maml
 			if (auto read_bytes = fread(buffer, sizeof(char), file_size, file);
 				read_bytes > 0)
 			{
-				m_bytes = read_bytes;
+				m_bytes = static_cast<uint32_t>(read_bytes);
 				m_bufferSize = file_size;
 
 				m_buffer = reinterpret_cast<char*>(buffer);
@@ -61,7 +61,7 @@ namespace maml
 			if (auto read_bytes = fread(buffer, sizeof(char), file_size, file);
 				read_bytes > 0)
 			{
-				m_bytes = read_bytes;
+				m_bytes = static_cast<uint32_t>(read_bytes);
 				m_bufferSize = file_size;
 
 				m_buffer = reinterpret_cast<char*>(buffer);

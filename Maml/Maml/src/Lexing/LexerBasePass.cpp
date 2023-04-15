@@ -14,6 +14,10 @@ namespace maml
 
 	bool CLexerBasePass::scan(const String& source_file_path, CTokenStream& stream)
 	{
+		if (!m_source.read_from_file_at_path(source_file_path)) return false;
+
+		m_tokenStream = &stream;
+
 		for(;;)
 		{
 			SToken token = _scan_next_token();
@@ -23,7 +27,12 @@ namespace maml
 				return false;
 			}
 
-			
+			if(token.m_type == TokenType_EOF)
+			{
+				break;
+			}
+
+			m_tokenStream->add(token);
 		}
 
 		return true;

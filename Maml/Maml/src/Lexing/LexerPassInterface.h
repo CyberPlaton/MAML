@@ -35,7 +35,12 @@ namespace maml
 		TokenType _peek_next();
 
 
-		SToken& _get_token_at_index(uint32_t index);
+		TokenType _get_token_type_at_index(uint32_t index);
+
+		String _get_token_text_at_index(uint32_t index);
+
+		uint32_t _get_token_line_at_index(uint32_t index);
+
 
 		void _erase_tokens_in_range(uint32_t index, uint32_t count);
 

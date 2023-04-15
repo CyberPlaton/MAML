@@ -20,7 +20,7 @@ namespace maml
 
 	uint32_t CTokenStream::size() const
 	{
-		return m_stream.size();
+		return static_cast< uint32_t>(m_stream.size());
 	}
 
 
@@ -75,6 +75,18 @@ namespace maml
 		{
 			m_stream[index] = token;
 		}
+	}
+
+
+	void CTokenStream::add(TokenType type, const String& text, uint32_t line)
+	{
+		m_stream.emplace_back(type, text, line);
+	}
+
+
+	void CTokenStream::add(const SToken& token)
+	{
+		m_stream.push_back(std::move(token));
 	}
 
 

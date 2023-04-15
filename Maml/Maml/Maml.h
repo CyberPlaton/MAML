@@ -8,4 +8,19 @@
 #include "Lexing/LexerPasses/VectorizingLexerPass.h"
 
 
+namespace maml
+{
+	struct SInit
+	{
+		List< ILexerPass* > m_lexerPasses;
+	};
+
+	void init(const SInit& settings);
+
+	void terminate();
+
+	bool scan_file(const String& source_file_path);
+}
+
+
 #endif

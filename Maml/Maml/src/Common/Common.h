@@ -6,6 +6,7 @@
 #include <filesystem>
 #include <assert.h>
 #include <vector>
+#include <list>
 
 
 #define MAML_NOVTABLE __declspec(novtable)
@@ -33,6 +34,9 @@ namespace maml
 
 	template < typename T >
 	using Vector = std::vector< T >;
+
+	template < typename T >
+	using List = std::list< T >;
 
 
 	class INonCopyable

@@ -36,7 +36,7 @@ namespace maml
 
 			if(result = fopen_s(&file, file_path.c_str(), m.c_str()); result == 0)
 			{
-				*file_size = path.file_size();
+				*file_size = static_cast<uint32_t>(path.file_size());
 
 				return file;
 			}

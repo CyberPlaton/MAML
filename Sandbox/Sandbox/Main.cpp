@@ -6,18 +6,17 @@
 #include <crtdbg.h>
 #include <iostream>
 
+
 void algorithm()
 {
-	maml::CSourceFile source;
+	maml::SInit init;
+	maml::init(init);
 
-	if (source.read_from_file_at_path("Source.txt"))
-	{
-		for (const auto& iter : source)
-		{
-			std::cout << iter;
-		}
-	}
+	maml::scan_file("Source.txt");
+
+	maml::terminate();
 }
+
 
 int main(int argc, char* argv[])
 {

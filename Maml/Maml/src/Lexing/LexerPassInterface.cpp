@@ -47,9 +47,21 @@ namespace maml
 	}
 
 
-	maml::SToken& CLexerPassInterface::_get_token_at_index(uint32_t index)
+	TokenType CLexerPassInterface::_get_token_type_at_index(uint32_t index)
 	{
-		return m_stream->at(index);
+		return m_stream->operator[](index).m_type;
+	}
+
+
+	maml::String CLexerPassInterface::_get_token_text_at_index(uint32_t index)
+	{
+		return m_stream->operator[](index).m_text;
+	}
+
+
+	uint32_t CLexerPassInterface::_get_token_line_at_index(uint32_t index)
+	{
+		return m_stream->operator[](index).m_line;
 	}
 
 
