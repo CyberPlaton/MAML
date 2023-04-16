@@ -18,11 +18,11 @@ function LinkLibraryForPlatformAndConfig(platform, config, library, library_path
 	filter{}
 end
 
-
------------------------------------------------------------
--- Windows defines
------------------------------------------------------------
-filter "platforms:Windows"
+if os.target() == "windows" then
+	-----------------------------------------------------------
+	-- Windows defines
+	-----------------------------------------------------------
+	filter "platforms:Windows"
 	system "windows"
 
 	filter "Debug"
@@ -30,7 +30,8 @@ filter "platforms:Windows"
 		symbols "On"
 		defines{
 			"MAML_DEBUG=1",
-			"_USE_MATH_DEFINES",
+			"MINT_RELEASE=0",
+			"MAML_DISTR=0",
 			"__STDC_FORMAT_MACROS",
 			"_ITERATOR_DEBUG_LEVEL=2",
 			"_CRT_SECURE_NO_WARNINGS",
@@ -45,6 +46,7 @@ filter "platforms:Windows"
 		defines{
 			"MAML_DEBUG=0",
 			"MINT_RELEASE=1",
+			"MAML_DISTR=0",
 			"__STDC_FORMAT_MACROS",
 			"_ITERATOR_DEBUG_LEVEL=0",
 			"_CRT_SECURE_NO_WARNINGS",
@@ -59,6 +61,7 @@ filter "platforms:Windows"
 		symbols "Off"
 		defines{
 			"MAML_DEBUG=0",
+			"MINT_RELEASE=0",
 			"MAML_DISTR=1",
 			"__STDC_FORMAT_MACROS",
 			"_ITERATOR_DEBUG_LEVEL=0",
@@ -68,7 +71,60 @@ filter "platforms:Windows"
 		CreateBinaryAndIntermediateOutputDirectory(true, "Distr", "Windows")
 		CreateBinaryAndIntermediateOutputDirectory(false, "Distr", "Windows")
 
+elseif os.target() == "linux" then
+	-----------------------------------------------------------
+	-- Linux defines
+	-----------------------------------------------------------
+	filter "platforms:Linux"
+	system "linux"
 
------------------------------------------------------------
--- Linux defines
------------------------------------------------------------
+	defines{
+		"MAML_PLATFORM_LINUX=1",
+	}
+
+	filter "Debug"
+		optimize "Off"
+		symbols "On"
+		defines{
+			"MAML_DEBUG=1",
+			"MINT_RELEASE=0",
+			"MAML_DISTR=0",
+			"__STDC_FORMAT_MACROS",
+			"_ITERATOR_DEBUG_LEVEL=2",
+			"_CRT_SECURE_NO_WARNINGS",
+			"_CRT_SECURE_NO_DEPRECATE",
+		}
+		CreateBinaryAndIntermediateOutputDirectory(true, "Debug", "Linux")
+		CreateBinaryAndIntermediateOutputDirectory(false, "Debug", "Linux")
+
+	filter "Release"
+		optimize "Full"
+		symbols "On"
+		defines{
+			"MAML_DEBUG=0",
+			"MINT_RELEASE=1",
+			"MAML_DISTR=0",
+			"__STDC_FORMAT_MACROS",
+			"_ITERATOR_DEBUG_LEVEL=0",
+			"_CRT_SECURE_NO_WARNINGS",
+			"_CRT_SECURE_NO_DEPRECATE",
+		}
+
+		CreateBinaryAndIntermediateOutputDirectory(true, "Release", "Linux")
+		CreateBinaryAndIntermediateOutputDirectory(false, "Release", "Linux")
+
+	filter "Distr"
+		optimize "Full"
+		symbols "Off"
+		defines{
+			"MAML_DEBUG=0",
+			"MINT_RELEASE=0",
+			"MAML_DISTR=1",
+			"__STDC_FORMAT_MACROS",
+			"_ITERATOR_DEBUG_LEVEL=0",
+			"_CRT_SECURE_NO_WARNINGS",
+			"_CRT_SECURE_NO_DEPRECATE",
+		}
+		CreateBinaryAndIntermediateOutputDirectory(true, "Distr", "Linux")
+		CreateBinaryAndIntermediateOutputDirectory(false, "Distr", "Linux")
+end

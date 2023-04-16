@@ -19,10 +19,12 @@ function LinkLibraryForPlatformAndConfig(platform, config, library, library_path
 end
 
 
------------------------------------------------------------
--- Windows defines
------------------------------------------------------------
-filter "platforms:Windows"
+
+if os.target() == "windows" then
+	-----------------------------------------------------------
+	-- Windows defines
+	-----------------------------------------------------------
+	filter "platforms:Windows"
 	system "windows"
 
 	filter "Debug"
@@ -50,7 +52,35 @@ filter "platforms:Windows"
 		CreateBinaryAndIntermediateOutputDirectory(true, "Distr", "Windows")
 		CreateBinaryAndIntermediateOutputDirectory(false, "Distr", "Windows")
 
+elseif os.target() == "linux" then
+	-----------------------------------------------------------
+	-- Linux linking
+	-----------------------------------------------------------
+	filter "platforms:Linux"
+	system "linux"
 
------------------------------------------------------------
--- Linux linking
------------------------------------------------------------
+	filter "Debug"
+		optimize "Off"
+		symbols "On"
+		defines{
+		}
+		CreateBinaryAndIntermediateOutputDirectory(true, "Debug", "Linux")
+		CreateBinaryAndIntermediateOutputDirectory(false, "Debug", "Linux")
+
+	filter "Release"
+		optimize "Full"
+		symbols "On"
+		defines{
+		}
+
+		CreateBinaryAndIntermediateOutputDirectory(true, "Release", "Linux")
+		CreateBinaryAndIntermediateOutputDirectory(false, "Release", "Linux")
+
+	filter "Distr"
+		optimize "Full"
+		symbols "Off"
+		defines{
+		}
+		CreateBinaryAndIntermediateOutputDirectory(true, "Distr", "Linux")
+		CreateBinaryAndIntermediateOutputDirectory(false, "Distr", "Linux")
+end
